@@ -18,7 +18,7 @@
 #define CFG_YC_REMAP_FLAG     ( "YC_Formula" )                //遥测量重映射表标志
 #define CFG_YC_REMAP_FLAG_END ( "Formula_END" )               //遥测量重映射表结束标志
 #define CFG_MACHINE_ADDR      ( "The Address of The Machine" )//本机地址定义标志 
-#define CFG_YX_START_SEQ 	  ( 0 )                           //遥信起始序号 
+#define CFG_YX_START_SEQ      ( 0 )                           //遥信起始序号 
 #define CFG_YC_START_SEQ      ( 4096 )                        //遥测起始序号
 
 CSerail serail;

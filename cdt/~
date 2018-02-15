@@ -1,0 +1,21 @@
+int find_(char* str, char flag, int time){
+	int pos=0,_time=1;
+    while(*str!='\0'){
+		if(*str==flag){
+		    if(time == _time){
+			   return pos;				
+    		}
+	        _time++;
+		}
+		pos++;
+		str++;
+	}
+}
+char* substr_(char* str, char* dest, char flag){
+	while(*str != flag){
+		str++;
+		*dest=*str;
+		dest++;
+	}
+	return str+1;
+}

@@ -23,7 +23,7 @@ enum usu {
     PUSH_SUCCESS
 };
 
-float calculate(float num1, float num2, char operat)
+double calculate(double num1, double num2, char operat)
 {
     switch (operat) {
         case '+': return (num1 + num2);
@@ -62,7 +62,7 @@ int is_StackEmpty(int *top)
     return STACK_OK;
 }
 
-int push_StackNum(float *stack, float *num, int *top)
+int push_StackNum(double *stack, double *num, int *top)
 {
     if (is_StackFull(top) == STACK_FULL) {
         return STACK_FULL;
@@ -82,9 +82,9 @@ int push_StackOperator(char *stack, char *operat, int *top)
     return PUSH_SUCCESS;
 }
 
-float pop_StackNum(float *stack, int *top)
+double pop_StackNum(double *stack, int *top)
 {
-    float num;
+    double num;
     if (is_StackFull(top) == STACK_EMPTY) {
         return STACK_EMPTY;
     }
@@ -105,10 +105,10 @@ char pop_StackOperator(char *stack, int *top)
 }
 
 int compare_priority(char *str, char *stack_operator, int *top_operator, 
-                                    float *stack_num, int *top_num)
+                                    double *stack_num, int *top_num)
 {
     char operat;
-    float num1, num2, total;
+    double num1, num2, total;
     
     if (*str == '\0'){//表达式结束
         return SUCCESS;
@@ -151,15 +151,15 @@ int compare_priority(char *str, char *stack_operator, int *top_operator,
     return SUCCESS;
 }
 
-float getCalcValue(char *str, TY_YC_MB_MAP_LINK ycMbMapLink)
+double getCalcValue(char *str, TY_YC_MB_MAP_LINK ycMbMapLink)
 {
-    float stack_num[MAX_SIZE];//操作数栈
+    double stack_num[MAX_SIZE];//操作数栈
     char stack_operator[MAX_SIZE];//运算符栈
     memset(stack_num, 0, sizeof(stack_num));
     memset(stack_operator, 0, sizeof(stack_operator));
     int top_operator = -1, top_num = -1;
 
-    float num = 0, num1 = 0, num2 = 0, total = 0;
+    double num = 0, num1 = 0, num2 = 0, total = 0;
     char operat = 0;
     char *ptr = str;
     
@@ -181,7 +181,7 @@ float getCalcValue(char *str, TY_YC_MB_MAP_LINK ycMbMapLink)
             pTY_YC_MB_MAP_LINK pyclink = &ycMbMapLink;
             TY_YC_MB_MAP* pYcMbMap;
 
-            float fnum = 0;//用作浮点数据处理 
+            double fnum = 0;//用作浮点数据处理 
             short snum = 0;//用作整型数据处理 
             ushort seq = atoi(++ptr);//判断序号
             while (1) {
@@ -205,7 +205,7 @@ float getCalcValue(char *str, TY_YC_MB_MAP_LINK ycMbMapLink)
                     if (pYcMbMap->dataType == 1) {//整型数据 
                         switchBytes(buf, sizeof(snum));
                         memcpy(&snum, pbuf, sizeof(snum));
-                        fnum = (float)snum;//将整型强转为浮点便于处理 
+                        fnum = (double)snum;//将整型强转为浮点便于处理 
                     } else if (pYcMbMap->dataType == 2) {//浮点数据 
                         switchBytes(buf, sizeof(fnum));
                         memcpy(&fnum, pbuf, sizeof(fnum));

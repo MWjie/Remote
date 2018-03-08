@@ -7,7 +7,7 @@
 extern "C" {  
 #endif 
 
-float getCalcValue(char *str, TY_YC_MB_MAP_LINK ycMbMapLink); 
+double getCalcValue(char *str, TY_YC_MB_MAP_LINK ycMbMapLink); 
 
 #ifdef __cplusplus  
 }  

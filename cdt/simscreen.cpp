@@ -98,7 +98,8 @@ void loadCfg(char* cfgfile)
     loadYcREMap(fp);
 }
 
-char* getRegBlock(char*p, uchar* pFunc, ushort* regaddr, uchar* num){
+char* getRegBlock(char*p, uchar* pFunc, ushort* regaddr, uchar* num)
+{
     char temp[20];
     char *ptemp;
     int i = 0;
@@ -464,9 +465,9 @@ void addYxMap(TY_YX_MB_MAP_LINK* plink, TY_YX_MB_MAP* pYxMap)
         while (plink->next != NULL) {
             plink = plink->next;
         }
-            pnext = new TY_YX_MB_MAP_LINK();
-            pnext->pYxMbMap = pYxMap;
-            plink->next = pnext;	
+        pnext = new TY_YX_MB_MAP_LINK();
+        pnext->pYxMbMap = pYxMap;
+        plink->next = pnext;	
     }
 }
 void addYcMap(TY_YC_MB_MAP_LINK* plink, TY_YC_MB_MAP* pYcMap)
@@ -707,6 +708,7 @@ void convertMbReg(uchar *sbuf, uint Serail_NUM)
                     switchBytes((uchar*)pbuf, pYxMbMap->mbRegSize*2); 
                 } else if (pYxMbMap->bit_start == 0xFF) {//不使用位 
                     *pbuf = (*pbuf)>0?1:0;
+                    switchBytes((uchar*)pbuf, pYxMbMap->mbRegSize*2); 
                 }
                 mbRegSurplus -= pYxMbMap->mbRegSize;
                 if (mbRegSurplus <= 0) {
@@ -722,7 +724,7 @@ void convertMbReg(uchar *sbuf, uint Serail_NUM)
         for (; pyclink != NULL; pyclink=pyclink->next) {			
             pYcMbREMap = pyclink->pYcMbREMap;
             if (mbDevAddr==MachineAddr && (mbRegStart+mbRegSize-mbRegSurplus)==pYcMbREMap->ycModbusAddr) {
-                val = getCalcValue(pYcMbREMap->formula, ycMbMapLink);
+                val = (float)getCalcValue(pYcMbREMap->formula, ycMbMapLink);
                 memcpy(pbuf, &val, sizeof(val));
                 switchBytes((uchar*)pbuf, sizeof(val));
                 printf("mbaddr:%d val:%.3f\n", pYcMbREMap->ycModbusAddr, val);

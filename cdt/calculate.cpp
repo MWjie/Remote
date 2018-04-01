@@ -182,6 +182,7 @@ double getCalcValue(char *str, TY_YC_MB_MAP_LINK ycMbMapLink)
             TY_YC_MB_MAP* pYcMbMap;
 
             double fnum = 0;//用作浮点数据处理 
+            float fnum_tmp = 0;//float中间值 
             short snum = 0;//用作整型数据处理 
             ushort seq = atoi(++ptr);//判断序号
             while (1) {
@@ -207,8 +208,9 @@ double getCalcValue(char *str, TY_YC_MB_MAP_LINK ycMbMapLink)
                         memcpy(&snum, pbuf, sizeof(snum));
                         fnum = (double)snum;//将整型强转为浮点便于处理 
                     } else if (pYcMbMap->dataType == 2) {//浮点数据 
-                        switchBytes(buf, sizeof(fnum));
-                        memcpy(&fnum, pbuf, sizeof(fnum));
+                        switchBytes(buf, sizeof(fnum_tmp));
+                        memcpy(&fnum_tmp, pbuf, sizeof(fnum_tmp));
+                        fnum = (double)fnum_tmp;//用一个中间值float强转double 
                     } else {
                         printf("\nSeq:%d Reg:%d Addr:%d datatype error!\n",pYcMbMap->ycSeqStart, pYcMbMap->mbRegStart, pYcMbMap->mbDevAddr);
                     }	

@@ -13,6 +13,7 @@ int main(int argc,char **argv)
     InitializeCriticalSection(&CriticalSection);
     //加载配置 
     loadCfg("setting.cfg");
+   
     /* 原模拟屏程序 */
 //	screenAllOpen();//Inited all open
 //	screenAllLight();//Light up the screen

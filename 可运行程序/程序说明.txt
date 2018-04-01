@@ -63,3 +63,6 @@ The address of the machine [ 地址 ]
 需要配置数据类型。0-遥信 1-short 2-float
 
 根据IP:端口和MODBUS地址取值
+
+2018/2/28
+float转double

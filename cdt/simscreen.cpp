@@ -98,7 +98,7 @@ void loadCfg(char* cfgfile)
     loadYcREMap(fp);
 }
 
-char* getRegBlock(char*p, uchar* pFunc, ushort* regaddr, uchar* num)
+char* getRegBlock(char*p, uchar* pFunc, ushort* regaddr, uchar* num) 
 {
     char temp[20];
     char *ptemp;
